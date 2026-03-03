@@ -2309,7 +2309,9 @@
                     
                     if (!shouldShow) {
                         // Clear the field value when hidden
-                        delete formData[sectionId]?.[q.id];
+                        if (formData[sectionId]) {
+                            delete formData[sectionId][q.id];
+                        }
                         
                         // Also recursively hide any children that depend on this field
                         updateConditionalVisibility(sectionId, q.id, undefined);
@@ -2626,22 +2628,47 @@
     function downloadFile(content, filename, mimeType) {
         const blob = new Blob([content], { type: mimeType });
         const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        setTimeout(() => URL.revokeObjectURL(url), 100);
+        
+        // Check if iOS Safari
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        
+        if (isIOS) {
+            // iOS Safari - open in new tab, user saves manually
+            const newWindow = window.open(url, '_blank');
+            if (!newWindow) {
+                // Popup blocked - fallback to same window
+                window.location.href = url;
+            }
+        } else {
+            // Standard download for other browsers
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 100);
+        }
     }
 
     function downloadDataURL(dataURL, filename) {
-        const a = document.createElement('a');
-        a.href = dataURL;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+        // Check if iOS Safari
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        
+        if (isIOS) {
+            // iOS Safari - open in new tab
+            const newWindow = window.open(dataURL, '_blank');
+            if (!newWindow) {
+                window.location.href = dataURL;
+            }
+        } else {
+            const a = document.createElement('a');
+            a.href = dataURL;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
     }
 
     function generateCSV(payload) {
