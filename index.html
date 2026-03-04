@@ -2596,10 +2596,10 @@
         );
 
         // Download CSV after short delay to avoid browser blocking multiple downloads
-        setTimeout(() => {
-            const csv = generateCSV(exportPayload);
-            downloadFile(csv, `${filePrefix}_data_csv.csv`, 'text/csv');
-        }, 500);
+       // setTimeout(() => {
+        //    const csv = generateCSV(exportPayload);
+        //    downloadFile(csv, `${filePrefix}_data_csv.csv`, 'text/csv');
+      //  }, 500);
 
         // Download photos individually after delays
         let photoDelay = 1000;
