@@ -2591,14 +2591,14 @@
         // Download JSON
         downloadFile(
             JSON.stringify(exportPayload, null, 2),
-            `${filePrefix}_data.json`,
+            `${filePrefix}_data_json.json`,
             'application/json'
         );
 
         // Download CSV after short delay to avoid browser blocking multiple downloads
         setTimeout(() => {
             const csv = generateCSV(exportPayload);
-            downloadFile(csv, `${filePrefix}_data.csv`, 'text/csv');
+            downloadFile(csv, `${filePrefix}_data_csv.csv`, 'text/csv');
         }, 500);
 
         // Download photos individually after delays
