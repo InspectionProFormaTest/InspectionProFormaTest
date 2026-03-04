@@ -741,7 +741,6 @@
                 <button class="btn btn-secondary" onclick="nextSection()">Next →</button>
             </div>
             <span class="analytics-badge" id="analyticsBadge">0:00</span>
-            <button class="btn btn-primary" onclick="generateReport()">Generate Report</button>
             <button class="btn btn-success" onclick="exportData()">Export Data</button>
         </div>
     </footer>
@@ -765,13 +764,8 @@
         <div class="modal">
             <div class="modal-header">Export Complete</div>
             <div class="modal-body">
-                <p>Your inspection data is being downloaded as separate files:</p>
-                <ul>
-                    <li><strong>inspection_[timestamp].json</strong> - Full structured data</li>
-                    <li><strong>inspection_[timestamp].csv</strong> - Flattened summary</li>
-                    <li><strong>Photos &amp; signatures</strong> - Downloaded individually</li>
-                </ul>
-                <p style="font-size:12px; color:var(--ms-grey-text); margin-top:12px;">Note: Your browser may ask permission to download multiple files.</p>
+                <p>Your inspection data has been exported.</p>
+                <p style="font-size:12px; color:var(--ms-grey-text); margin-top:12px;">On iPad: tap the download icon in Safari, then save the JSON file to Files.</p>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" onclick="closeExportModal()">Done</button>
@@ -1851,12 +1845,6 @@
                         type: "textarea"
                     }
                 ]
-            },
-            {
-                id: "signatures",
-                label: "Signatures",
-                shortLabel: "Signatures",
-                questions: []
             }
         ]
     };
@@ -1984,37 +1972,6 @@
                 </div>
             </div>
         `).join('');
-
-        // Add signature section at the end
-        main.innerHTML += `
-            <div class="section" id="section-signatures">
-                <div class="section-header">Signatures</div>
-                <div class="section-body">
-                    <div class="signature-section">
-                        <div class="signature-section-title">Pharmacist Signature</div>
-                        <div class="signature-pad-container">
-                            <canvas class="signature-pad" id="sig-pharmacist"></canvas>
-                        </div>
-                        <div class="signature-actions">
-                            <button class="sig-btn" onclick="clearSignature('pharmacist')">Clear</button>
-                            <button class="sig-btn primary" onclick="saveSignature('pharmacist')">Save Signature</button>
-                        </div>
-                    </div>
-                    <div class="signature-section">
-                        <div class="signature-section-title">Authorised Officer Signature</div>
-                        <div class="signature-pad-container">
-                            <canvas class="signature-pad" id="sig-ao"></canvas>
-                        </div>
-                        <div class="signature-actions">
-                            <button class="sig-btn" onclick="clearSignature('ao')">Clear</button>
-                            <button class="sig-btn primary" onclick="saveSignature('ao')">Save Signature</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-
-        initSignaturePads();
     }
 
     function renderQuestion(q, sectionId) {
@@ -2591,36 +2548,9 @@
         // Download JSON
         downloadFile(
             JSON.stringify(exportPayload, null, 2),
-            `${filePrefix}_data_json.json`,
+            `${filePrefix}_DATA_JSON.json`,
             'application/json'
         );
-
-        // Download CSV after short delay to avoid browser blocking multiple downloads
-       // setTimeout(() => {
-        //    const csv = generateCSV(exportPayload);
-        //    downloadFile(csv, `${filePrefix}_data_csv.csv`, 'text/csv');
-      //  }, 500);
-
-        // Download photos individually after delays
-        let photoDelay = 1000;
-        let photoNum = 1;
-        Object.entries(photos).forEach(([sectionId, photoList]) => {
-            photoList.forEach((photo) => {
-                setTimeout(() => {
-                    downloadDataURL(photo.data, `${filePrefix}_photo${photoNum}.jpg`);
-                    photoNum++;
-                }, photoDelay);
-                photoDelay += 400;
-            });
-        });
-
-        // Download signatures
-        Object.entries(signatures).forEach(([type, sig]) => {
-            setTimeout(() => {
-                downloadDataURL(sig.data, `${filePrefix}_signature_${type}.png`);
-            }, photoDelay);
-            photoDelay += 400;
-        });
 
         document.getElementById('exportModal').classList.add('visible');
     }
@@ -2636,11 +2566,9 @@
             // iOS Safari - open in new tab, user saves manually
             const newWindow = window.open(url, '_blank');
             if (!newWindow) {
-                // Popup blocked - fallback to same window
                 window.location.href = url;
             }
         } else {
-            // Standard download for other browsers
             const a = document.createElement('a');
             a.href = url;
             a.download = filename;
@@ -2650,25 +2578,9 @@
             setTimeout(() => URL.revokeObjectURL(url), 100);
         }
     }
-
-    function downloadDataURL(dataURL, filename) {
-        // Check if iOS Safari
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-        
-        if (isIOS) {
-            // iOS Safari - open in new tab
-            const newWindow = window.open(dataURL, '_blank');
-            if (!newWindow) {
-                window.location.href = dataURL;
-            }
-        } else {
-            const a = document.createElement('a');
-            a.href = dataURL;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        }
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
     }
 
     function generateCSV(payload) {
