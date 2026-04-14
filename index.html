@@ -1614,63 +1614,6 @@
                         requiredAction: "Confirm that all required schemes are included in the Prescription Register."
                     }
                 ]
-            },
-            {
-                id: "feedback",
-                label: "Inspector Feedback",
-                shortLabel: "Feedback",
-                questions: [
-                    {
-                        id: "fb_intro",
-                        label: "Please provide feedback on your experience using this digital inspection form.",
-                        type: "info"
-                    },
-                    {
-                        id: "fb_ease_of_use",
-                        label: "Ease of use (1 = very difficult, 5 = very easy)",
-                        type: "choice",
-                        options: ["1", "2", "3", "4", "5"],
-                        required: true
-                    },
-                    {
-                        id: "fb_speed_vs_paper",
-                        label: "Compared to paper, completing this inspection was:",
-                        type: "choice",
-                        options: ["Faster", "About the same", "Slower"],
-                        required: true
-                    },
-                    {
-                        id: "fb_flow_disruption",
-                        label: "Did the digital form disrupt your inspection flow?",
-                        type: "choice",
-                        options: ["Not at all", "A little", "Significantly"],
-                        required: true
-                    },
-                    {
-                        id: "fb_prefer_over_paper",
-                        label: "Would you prefer this over paper for future inspections?",
-                        type: "choice",
-                        options: ["Yes", "No", "Unsure"],
-                        required: true
-                    },
-                    {
-                        id: "fb_conditional_questions",
-                        label: "The conditional questions (showing/hiding based on answers) were:",
-                        type: "choice",
-                        options: ["Helpful", "Confusing", "Didn't notice"],
-                        required: true
-                    },
-                    {
-                        id: "fb_slowdown",
-                        label: "What slowed you down the most?",
-                        type: "textarea"
-                    },
-                    {
-                        id: "fb_worked_well",
-                        label: "What worked well?",
-                        type: "textarea"
-                    }
-                ]
             }
         ]
     };
