@@ -398,134 +398,6 @@
             border-color: var(--ms-red);
         }
 
-        .photo-section {
-            margin-top: 24px;
-            padding-top: 24px;
-            border-top: 2px solid var(--ms-grey-border);
-        }
-
-        .photo-section-title {
-            font-weight: 600;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 10px;
-            margin-bottom: 12px;
-        }
-
-        .photo-thumb-container {
-            position: relative;
-            aspect-ratio: 1;
-        }
-
-        .photo-thumb {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 3px;
-            border: 1px solid var(--ms-grey-border);
-        }
-
-        .photo-remove {
-            position: absolute;
-            top: 4px;
-            right: 4px;
-            width: 24px;
-            height: 24px;
-            background: var(--ms-red);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 14px;
-            line-height: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .capture-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            padding: 14px;
-            background: white;
-            border: 2px dashed var(--ms-grey-border);
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 14px;
-            color: var(--ms-grey-text);
-            font-family: inherit;
-        }
-
-        .capture-btn:hover {
-            border-color: var(--ms-blue);
-            color: var(--ms-blue);
-            background: #f8fbfe;
-        }
-
-        .signature-section {
-            margin-top: 24px;
-            padding-top: 24px;
-            border-top: 2px solid var(--ms-grey-border);
-        }
-
-        .signature-section-title {
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .signature-pad-container {
-            border: 2px solid red;
-            border-radius: 3px;
-            overflow: hidden;
-            background: #f0f0f0;
-            min-height: 150px;
-        }
-
-        .signature-pad {
-            width: 100%;
-            height: 150px;
-            display: block;
-            touch-action: none;
-            cursor: crosshair;
-            background: white;
-        }
-
-        .signature-actions {
-            display: flex;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .sig-btn {
-            padding: 8px 16px;
-            border: 1px solid var(--ms-grey-border);
-            background: white;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 13px;
-            font-family: inherit;
-        }
-
-        .sig-btn:hover {
-            background: var(--ms-grey-bg);
-        }
-
-        .sig-btn.primary {
-            background: var(--ms-blue);
-            color: white;
-            border-color: var(--ms-blue);
-        }
-
         .footer-actions {
             position: fixed;
             bottom: 0;
@@ -645,22 +517,6 @@
             justify-content: flex-end;
         }
 
-        .photo-prompt {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .photo-prompt p {
-            margin-bottom: 16px;
-            color: var(--ms-grey-text);
-        }
-
-        .photo-prompt-btns {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-
         .checkbox-group {
             display: flex;
             flex-direction: column;
@@ -745,21 +601,6 @@
         </div>
     </footer>
 
-    <div class="modal-overlay" id="photoModal">
-        <div class="modal">
-            <div class="modal-header">Add Photo Evidence?</div>
-            <div class="modal-body">
-                <div class="photo-prompt">
-                    <p>Would you like to capture photo evidence for this item?</p>
-                    <div class="photo-prompt-btns">
-                        <button class="btn btn-primary" onclick="acceptPhotoPrompt()">📷 Add Photo</button>
-                        <button class="btn btn-secondary" onclick="skipPhotoPrompt()">Skip</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="modal-overlay" id="exportModal">
         <div class="modal">
             <div class="modal-header">Export Complete</div>
@@ -772,8 +613,6 @@
             </div>
         </div>
     </div>
-
-    <input type="file" id="photoInput" accept="image/*" capture="environment" style="display:none">
 
 
     <script>
@@ -1546,7 +1385,6 @@
                         type: "choice",
                         options: ["Pass", "Fail"],
                         requiredAction: "Confirm that the pharmaceutical refrigerator has been serviced in the last year. Provide photographic evidence.",
-                        promptPhoto: false
                     },
                     {
                         id: "fr_service_date",
@@ -1566,7 +1404,6 @@
                         type: "choice",
                         options: ["Pass", "Fail"],
                         requiredAction: "Confirm that the pharmaceutical refrigerator is in good condition and the deficiencies noted at the inspection have been addressed. Provide photographic evidence.",
-                        promptPhoto: false
                     },
                     {
                         id: "fr_condition_notes",
@@ -1580,7 +1417,6 @@
                         type: "choice",
                         options: ["Pass", "Fail"],
                         requiredAction: "Confirm that the pharmaceutical refrigerator has been cleaned so that medicines stored in the pharmaceutical refrigerator are not at risk of cross contamination. Provide photographic evidence.",
-                        promptPhoto: false
                     },
                     {
                         id: "fr_clean_notes",
@@ -1594,7 +1430,6 @@
                         type: "choice",
                         options: ["Pass", "Fail"],
                         requiredAction: "Confirm that the pharmaceutical refrigerator is used solely for the storage of human medicines. Provide photographic evidence.",
-                        promptPhoto: false
                     },
                     {
                         id: "fr_human_only_notes",
@@ -1615,7 +1450,6 @@
                         type: "choice",
                         options: ["Pass", "Fail"],
                         requiredAction: "Confirm that all medicines stored in the pharmaceutical refrigerator are in good condition.",
-                        promptPhoto: false
                     },
                     {
                         id: "fr_medicines_condition_notes",
@@ -1629,7 +1463,6 @@
                         type: "choice",
                         options: ["Pass", "Fail"],
                         requiredAction: "Confirm that the pharmaceutical refrigerator is of sufficient size and sufficient space is maintained between the medicines and the internal surfaces of the pharmaceutical refrigerator in accordance with PSI Guidelines.",
-                        promptPhoto: false
                     },
                     {
                         id: "fr_capacity_issues",
@@ -1828,13 +1661,6 @@
                         required: true
                     },
                     {
-                        id: "fb_photo_capture",
-                        label: "Photo capture was:",
-                        type: "choice",
-                        options: ["Easy", "Awkward", "Didn't use"],
-                        required: true
-                    },
-                    {
                         id: "fb_slowdown",
                         label: "What slowed you down the most?",
                         type: "textarea"
@@ -1853,13 +1679,9 @@
     // STATE & ANALYTICS
     // ============================================
     let formData = {};
-    let photos = {};
-    let signatures = {};
     let currentSectionIndex = 0;
     let sessionStart = new Date();
     let sectionAnalytics = {};
-    let currentPhotoTarget = null;
-    let pendingPhotoPrompt = null;
 
     const deviceInfo = detectDevice();
 
@@ -1906,9 +1728,9 @@
                 exitedAt: null,
                 dwellMs: 0,
                 scrollEvents: 0,
-                photosPrompted: 0,
-                photosAccepted: 0,
-                photosSkipped: 0,
+                
+                
+                
                 textCharsEntered: 0,
                 passCount: 0,
                 failCount: 0
@@ -1919,9 +1741,6 @@
         renderSections();
         showSection(0);
         startTimer();
-        
-        // Photo input handler
-        document.getElementById('photoInput').addEventListener('change', handlePhotoCapture);
         
         // Track scroll events
         document.getElementById('mainContent').addEventListener('scroll', () => {
@@ -1961,14 +1780,6 @@
                 <div class="section-header">${section.label}</div>
                 <div class="section-body">
                     ${section.questions.map(q => renderQuestion(q, section.id)).join('')}
-                    
-                    <div class="photo-section">
-                        <div class="photo-section-title">📷 Photographs/videos taken by the Authorised Officer on site</div>
-                        <div class="photo-grid" id="photos-${section.id}"></div>
-                        <button class="capture-btn" onclick="capturePhoto('${section.id}')">
-                            📷 Capture Photo
-                        </button>
-                    </div>
                 </div>
             </div>
         `).join('');
@@ -2035,7 +1846,7 @@
         return `
             <div class="radio-group ${isPassFail ? 'inline' : ''}">
                 ${q.options.map(opt => `
-                    <label class="radio-option" id="${qId}_opt_${opt.replace(/\s+/g, '_')}" onclick="selectOption('${sectionId}', '${q.id}', '${opt}', this, ${q.promptPhoto || false})">
+                    <label class="radio-option" id="${qId}_opt_${opt.replace(/\s+/g, '_')}" onclick="selectOption('${sectionId}', '${q.id}', '${opt}', this)">
                         <input type="radio" name="${qId}" value="${opt}">
                         <span>${opt}</span>
                     </label>
@@ -2119,11 +1930,6 @@
         const newSection = questionnaire.sections[index];
         if (newSection) {
             sectionAnalytics[newSection.id].enteredAt = new Date();
-            
-            // Reinitialize signature pads when signatures section is shown
-            if (newSection.id === 'signatures') {
-                setTimeout(initSignaturePads, 50);
-            }
         }
 
         // Update progress
@@ -2145,7 +1951,7 @@
         }
     }
 
-    function selectOption(sectionId, fieldId, value, element, promptPhoto) {
+    function selectOption(sectionId, fieldId, value, element) {
         // Update visual state
         element.parentElement.querySelectorAll('.radio-option').forEach(opt => {
             opt.classList.remove('selected', 'pass', 'fail');
@@ -2175,13 +1981,6 @@
         
         // Handle conditional visibility
         updateConditionalVisibility(sectionId, fieldId, value);
-        
-        // Prompt for photo if this is a fail with photo prompt
-        if (value === 'Fail' && promptPhoto) {
-            sectionAnalytics[sectionId].photosPrompted++;
-            pendingPhotoPrompt = { sectionId, fieldId };
-            document.getElementById('photoModal').classList.add('visible');
-        }
 
         updateNavStatus();
         updateProgress();
@@ -2319,157 +2118,6 @@
     }
 
     // ============================================
-    // PHOTO CAPTURE
-    // ============================================
-    function capturePhoto(sectionId) {
-        currentPhotoTarget = sectionId;
-        document.getElementById('photoInput').click();
-    }
-
-    function acceptPhotoPrompt() {
-        document.getElementById('photoModal').classList.remove('visible');
-        if (pendingPhotoPrompt) {
-            sectionAnalytics[pendingPhotoPrompt.sectionId].photosAccepted++;
-            currentPhotoTarget = pendingPhotoPrompt.sectionId;
-            document.getElementById('photoInput').click();
-        }
-        pendingPhotoPrompt = null;
-    }
-
-    function skipPhotoPrompt() {
-        document.getElementById('photoModal').classList.remove('visible');
-        if (pendingPhotoPrompt) {
-            sectionAnalytics[pendingPhotoPrompt.sectionId].photosSkipped++;
-        }
-        pendingPhotoPrompt = null;
-    }
-
-    function handlePhotoCapture(e) {
-        const file = e.target.files[0];
-        if (!file || !currentPhotoTarget) return;
-
-        const reader = new FileReader();
-        reader.onload = function(event) {
-            if (!photos[currentPhotoTarget]) {
-                photos[currentPhotoTarget] = [];
-            }
-            
-            const photoData = {
-                id: `photo_${Date.now()}`,
-                data: event.target.result,
-                capturedAt: new Date().toISOString(),
-                fileName: `${currentPhotoTarget}_${photos[currentPhotoTarget].length + 1}.jpg`
-            };
-            
-            photos[currentPhotoTarget].push(photoData);
-            renderPhotos(currentPhotoTarget);
-        };
-        reader.readAsDataURL(file);
-        
-        e.target.value = '';
-    }
-
-    function renderPhotos(sectionId) {
-        const container = document.getElementById(`photos-${sectionId}`);
-        if (!container || !photos[sectionId]) return;
-
-        container.innerHTML = photos[sectionId].map((p, i) => `
-            <div class="photo-thumb-container">
-                <img src="${p.data}" class="photo-thumb" alt="Photo ${i + 1}">
-                <button class="photo-remove" onclick="removePhoto('${sectionId}', ${i})">×</button>
-            </div>
-        `).join('');
-    }
-
-    function removePhoto(sectionId, index) {
-        photos[sectionId].splice(index, 1);
-        renderPhotos(sectionId);
-    }
-
-    // ============================================
-    // SIGNATURE PAD
-    // ============================================
-    let signaturePads = {};
-
-    function initSignaturePads() {
-        ['pharmacist', 'ao'].forEach(type => {
-            const canvas = document.getElementById(`sig-${type}`);
-            if (!canvas) return;
-            
-            const ctx = canvas.getContext('2d');
-            
-            // Set canvas size
-            const rect = canvas.getBoundingClientRect();
-            canvas.width = rect.width * 2;
-            canvas.height = rect.height * 2;
-            ctx.scale(2, 2);
-            
-            signaturePads[type] = {
-                canvas,
-                ctx,
-                isDrawing: false,
-                lastX: 0,
-                lastY: 0
-            };
-
-            ctx.strokeStyle = '#000';
-            ctx.lineWidth = 2;
-            ctx.lineCap = 'round';
-            ctx.lineJoin = 'round';
-
-            canvas.addEventListener('pointerdown', (e) => startDraw(e, type));
-            canvas.addEventListener('pointermove', (e) => draw(e, type));
-            canvas.addEventListener('pointerup', () => stopDraw(type));
-            canvas.addEventListener('pointerleave', () => stopDraw(type));
-        });
-    }
-
-    function startDraw(e, type) {
-        const pad = signaturePads[type];
-        pad.isDrawing = true;
-        const rect = pad.canvas.getBoundingClientRect();
-        pad.lastX = e.clientX - rect.left;
-        pad.lastY = e.clientY - rect.top;
-    }
-
-    function draw(e, type) {
-        const pad = signaturePads[type];
-        if (!pad.isDrawing) return;
-        
-        const rect = pad.canvas.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        pad.ctx.beginPath();
-        pad.ctx.moveTo(pad.lastX, pad.lastY);
-        pad.ctx.lineTo(x, y);
-        pad.ctx.stroke();
-        
-        pad.lastX = x;
-        pad.lastY = y;
-    }
-
-    function stopDraw(type) {
-        signaturePads[type].isDrawing = false;
-    }
-
-    function clearSignature(type) {
-        const pad = signaturePads[type];
-        const rect = pad.canvas.getBoundingClientRect();
-        pad.ctx.clearRect(0, 0, rect.width, rect.height);
-        delete signatures[type];
-    }
-
-    function saveSignature(type) {
-        const pad = signaturePads[type];
-        signatures[type] = {
-            data: pad.canvas.toDataURL('image/png'),
-            savedAt: new Date().toISOString()
-        };
-        alert(`${type === 'pharmacist' ? 'Pharmacist' : 'Authorised Officer'} signature saved.`);
-    }
-
-    // ============================================
     // EXPORT
     // ============================================
     async function exportData() {
@@ -2502,23 +2150,11 @@
                     exitedAt: data.exitedAt?.toISOString()
                 })),
                 totals: {
-                    photosPrompted: Object.values(sectionAnalytics).reduce((a, b) => a + b.photosPrompted, 0),
-                    photosAccepted: Object.values(sectionAnalytics).reduce((a, b) => a + b.photosAccepted, 0),
-                    photosSkipped: Object.values(sectionAnalytics).reduce((a, b) => a + b.photosSkipped, 0),
                     totalPasses: Object.values(sectionAnalytics).reduce((a, b) => a + b.passCount, 0),
                     totalFails: Object.values(sectionAnalytics).reduce((a, b) => a + b.failCount, 0)
                 }
             },
-            sections: buildSectionsWithRequiredActions(),
-            photos: Object.fromEntries(
-                Object.entries(photos).map(([sectionId, photoList]) => [
-                    sectionId, 
-                    photoList.map(p => ({ fileName: p.fileName, capturedAt: p.capturedAt }))
-                ])
-            ),
-            signatures: Object.fromEntries(
-                Object.entries(signatures).map(([k, v]) => [k, { savedAt: v.savedAt }])
-            )
+            sections: buildSectionsWithRequiredActions()
         };
         
         function buildSectionsWithRequiredActions() {
@@ -2657,8 +2293,6 @@
         store.put({
             id: 'current',
             formData: formData,
-            photos: photos,
-            signatures: signatures,
             sectionAnalytics: sectionAnalytics,
             sessionStart: sessionStart.toISOString(),
             currentSectionIndex: currentSectionIndex,
@@ -2703,8 +2337,6 @@
         if (saved && saved.formData && Object.keys(saved.formData).length > 0) {
             if (confirm('Resume previous inspection?')) {
                 formData = saved.formData || {};
-                photos = saved.photos || {};
-                signatures = saved.signatures || {};
                 sectionAnalytics = saved.sectionAnalytics || sectionAnalytics;
                 sessionStart = new Date(saved.sessionStart);
                 currentSectionIndex = saved.currentSectionIndex || 0;
@@ -2797,11 +2429,6 @@
             });
         });
         
-        // Restore photo thumbnails
-        Object.keys(photos).forEach(sectionId => {
-            renderPhotos(sectionId);
-        });
-        
         updateNavStatus();
         updateProgress();
     }
@@ -2816,9 +2443,9 @@
                 exitedAt: null,
                 dwellMs: 0,
                 scrollEvents: 0,
-                photosPrompted: 0,
-                photosAccepted: 0,
-                photosSkipped: 0,
+                
+                
+                
                 textCharsEntered: 0,
                 passCount: 0,
                 failCount: 0
@@ -2831,8 +2458,6 @@
         
         // Init DB and restore
         initWithRestore();
-        
-        document.getElementById('photoInput').addEventListener('change', handlePhotoCapture);
         
         document.getElementById('mainContent').addEventListener('scroll', () => {
             const section = questionnaire.sections[currentSectionIndex];
@@ -2852,215 +2477,6 @@
         saveToDB();
     };
 
-    // ============================================
-    // GENERATE WORD REPORT
-    // ============================================
-    async function generateReport() {
-        // Load docx library dynamically
-        if (!window.docx) {
-            const script = document.createElement('script');
-            script.src = 'https://unpkg.com/docx@8.2.2/build/index.umd.js';
-            document.head.appendChild(script);
-            await new Promise(resolve => script.onload = resolve);
-        }
-
-        const { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell, 
-                AlignmentType, WidthType, BorderStyle, HeadingLevel } = window.docx;
-
-        // Get pharmacy details
-        const pharmacyName = formData.inspection_details?.pharmacy_name || 'Not specified';
-        const pharmacyReg = formData.inspection_details?.pharmacy_reg_number || 'Not specified';
-        const inspectionDate = formData.inspection_details?.inspection_date || new Date().toISOString().split('T')[0];
-        const aoName = formData.inspection_details?.ao_name || 'Not specified';
-
-        // Collect all fails with required actions
-        const fails = [];
-        questionnaire.sections.forEach(section => {
-            if (section.id === 'inspection_details' || section.id === 'signatures') return;
-            
-            section.questions.forEach(q => {
-                const value = formData[section.id]?.[q.id];
-                if (value === 'Fail' && q.requiredAction) {
-                    fails.push({
-                        section: section.label,
-                        question: q.label,
-                        requiredAction: q.requiredAction
-                    });
-                }
-            });
-        });
-
-        // Build document
-        const border = { style: BorderStyle.SINGLE, size: 1, color: "CCCCCC" };
-        const borders = { top: border, bottom: border, left: border, right: border };
-
-        const children = [
-            // Header
-            new Paragraph({
-                children: [new TextRun({ text: "PSI Pharmacy Inspection Report", bold: true, size: 32 })],
-                alignment: AlignmentType.CENTER,
-                spacing: { after: 400 }
-            }),
-            
-            // Pharmacy details
-            new Paragraph({
-                children: [new TextRun({ text: "Pharmacy Name: ", bold: true }), new TextRun(pharmacyName)],
-                spacing: { after: 120 }
-            }),
-            new Paragraph({
-                children: [new TextRun({ text: "Registration Number: ", bold: true }), new TextRun(pharmacyReg)],
-                spacing: { after: 120 }
-            }),
-            new Paragraph({
-                children: [new TextRun({ text: "Inspection Date: ", bold: true }), new TextRun(inspectionDate)],
-                spacing: { after: 120 }
-            }),
-            new Paragraph({
-                children: [new TextRun({ text: "Authorised Officer: ", bold: true }), new TextRun(aoName)],
-                spacing: { after: 400 }
-            }),
-
-            // Summary
-            new Paragraph({
-                children: [new TextRun({ text: "Summary of Findings", bold: true, size: 28 })],
-                spacing: { before: 300, after: 200 }
-            }),
-            new Paragraph({
-                children: [new TextRun({ text: `Total items requiring action: ${fails.length}`, size: 24 })],
-                spacing: { after: 300 }
-            })
-        ];
-
-        // Fails table
-        if (fails.length > 0) {
-            children.push(
-                new Paragraph({
-                    children: [new TextRun({ text: "Required Actions", bold: true, size: 28 })],
-                    spacing: { before: 300, after: 200 }
-                })
-            );
-
-            // Table header
-            const tableRows = [
-                new TableRow({
-                    children: [
-                        new TableCell({
-                            borders,
-                            width: { size: 2000, type: WidthType.DXA },
-                            shading: { fill: "D9E2F3" },
-                            children: [new Paragraph({ children: [new TextRun({ text: "Section", bold: true })] })]
-                        }),
-                        new TableCell({
-                            borders,
-                            width: { size: 3500, type: WidthType.DXA },
-                            shading: { fill: "D9E2F3" },
-                            children: [new Paragraph({ children: [new TextRun({ text: "Finding", bold: true })] })]
-                        }),
-                        new TableCell({
-                            borders,
-                            width: { size: 4000, type: WidthType.DXA },
-                            shading: { fill: "D9E2F3" },
-                            children: [new Paragraph({ children: [new TextRun({ text: "Required Action", bold: true })] })]
-                        })
-                    ]
-                })
-            ];
-
-            // Data rows
-            fails.forEach(fail => {
-                tableRows.push(
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                borders,
-                                width: { size: 2000, type: WidthType.DXA },
-                                children: [new Paragraph({ children: [new TextRun({ text: fail.section, size: 20 })] })]
-                            }),
-                            new TableCell({
-                                borders,
-                                width: { size: 3500, type: WidthType.DXA },
-                                children: [new Paragraph({ children: [new TextRun({ text: fail.question, size: 20 })] })]
-                            }),
-                            new TableCell({
-                                borders,
-                                width: { size: 4000, type: WidthType.DXA },
-                                children: [new Paragraph({ children: [new TextRun({ text: fail.requiredAction, size: 20 })] })]
-                            })
-                        ]
-                    })
-                );
-            });
-
-            children.push(
-                new Table({
-                    width: { size: 9500, type: WidthType.DXA },
-                    rows: tableRows
-                })
-            );
-        } else {
-            children.push(
-                new Paragraph({
-                    children: [new TextRun({ text: "No items requiring action were identified during this inspection.", italics: true })],
-                    spacing: { after: 300 }
-                })
-            );
-        }
-
-        // Signature lines
-        children.push(
-            new Paragraph({
-                children: [new TextRun({ text: "Signatures", bold: true, size: 28 })],
-                spacing: { before: 600, after: 300 }
-            }),
-            new Paragraph({
-                children: [new TextRun("_______________________________")],
-                spacing: { after: 80 }
-            }),
-            new Paragraph({
-                children: [new TextRun("Pharmacist Signature / Date")],
-                spacing: { after: 300 }
-            }),
-            new Paragraph({
-                children: [new TextRun("_______________________________")],
-                spacing: { after: 80 }
-            }),
-            new Paragraph({
-                children: [new TextRun("Authorised Officer Signature / Date")],
-                spacing: { after: 300 }
-            })
-        );
-
-        const doc = new Document({
-            styles: {
-                default: {
-                    document: {
-                        run: { font: "Arial", size: 24 }
-                    }
-                }
-            },
-            sections: [{
-                properties: {
-                    page: {
-                        size: { width: 11906, height: 16838 }, // A4
-                        margin: { top: 1440, right: 1440, bottom: 1440, left: 1440 }
-                    }
-                },
-                children: children
-            }]
-        });
-
-        // Generate and download
-        const buffer = await Packer.toBlob(doc);
-        const url = URL.createObjectURL(buffer);
-        const a = document.createElement('a');
-        a.href = url;
-        const reportPrefix = `PSI_${new Date().toISOString().slice(0,19).replace(/[:-]/g, '')}`;
-        a.download = `${reportPrefix}_report.docx`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    }
     </script>
 </body>
 </html>
